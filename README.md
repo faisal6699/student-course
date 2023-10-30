@@ -1,13 +1,13 @@
 # Student-Course Relationship Management System
 
 This is a Spring Boot project that demonstrates the management of a relationship between students and courses using Spring Data JPA.
+![Screenshot](https://github.com/faisal6699/student-course/blob/ddc813277fa458d4cb92578527b920b773220e0b/Screenshot%20from%202023-10-30%2016-00-51.png)
 
 ## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Diagram](#Diagram)
 - [Setup](#setup)
 - [Usage](#usage)
 - [Contributing](#contributing)
@@ -32,10 +32,6 @@ This project is a simple example of how to design a Spring Boot application that
 - PostgreSQL
 - Maven
 - RESTful API
-
-## Diagram
-
-[https://github.com/faisal6699/student-course/blob/master/Screenshot%20from%202023-10-30%2016-00-51.png?raw=true](https://github.com/faisal6699/student-course/blob/ddc813277fa458d4cb92578527b920b773220e0b/Screenshot%20from%202023-10-30%2016-00-51.png)
 
 ## Setup
 
