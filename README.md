@@ -35,7 +35,7 @@ This project is a simple example of how to design a Spring Boot application that
 
 ## Diagram
 
-https://github.com/faisal6699/student-course/blob/master/Screenshot%20from%202023-10-30%2016-00-51.png?raw=true
+[https://github.com/faisal6699/student-course/blob/master/Screenshot%20from%202023-10-30%2016-00-51.png?raw=true](https://github.com/faisal6699/student-course/blob/ddc813277fa458d4cb92578527b920b773220e0b/Screenshot%20from%202023-10-30%2016-00-51.png)
 
 ## Setup
 
