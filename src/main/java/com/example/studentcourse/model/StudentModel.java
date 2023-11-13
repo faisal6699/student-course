@@ -9,5 +9,4 @@ public class StudentModel {
     private String lastName;
     private String email;
     private Long age;
-    private String cardNumber;
 }

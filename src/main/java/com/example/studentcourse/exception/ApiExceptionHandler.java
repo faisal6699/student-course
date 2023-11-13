@@ -1,6 +1,9 @@
 package com.example.studentcourse.exception;
 
+import com.example.studentcourse.controller.StudentController;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +17,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@ControllerAdvice()
 public class ApiExceptionHandler {
+
     @ExceptionHandler(value = ApiRequestException.class)
     public ResponseEntity<Object> handleApiRequestException(ApiRequestException e) {
         ApiException apiException = new ApiException(
@@ -49,11 +54,23 @@ public class ApiExceptionHandler {
         return new ResponseEntity<>(apiException, HttpStatus.CONFLICT);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> notValid(MethodArgumentNotValidException ex, HttpServletRequest request) {
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<?> notValid(DataIntegrityViolationException ex) {
         List<String> errors = new ArrayList<>();
 
-        ex.getAllErrors().forEach(err -> errors.add(err.getDefaultMessage()));
+        errors.add(ex.getMessage());
+
+        Map<String, List<String>> result = new HashMap<>();
+        result.put("errors", errors);
+
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<?> notValid(ConstraintViolationException ex, HttpServletRequest request) {
+        List<String> errors = new ArrayList<>();
+
+        ex.getConstraintViolations().forEach(err -> errors.add(err.getMessage()));
 
         Map<String, List<String>> result = new HashMap<>();
         result.put("errors", errors);

@@ -1,5 +1,6 @@
 package com.example.studentcourse.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity(name = "IdCard")
@@ -28,6 +29,7 @@ public class IdCard {
             nullable = false,
             foreignKey = @ForeignKey(name = "id_fk")
     )
+    @JsonIgnore
     private Student student;
 
     public Long getId() {

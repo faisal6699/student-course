@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity(name = "Student")
 @Table(
         name = "student",
@@ -21,7 +24,6 @@ public class Student {
             nullable = false
     )
     @NotBlank(message = "Name is required")
-    @NotNull(message = "Name is required")
     private String firstName;
 
     public Long getId() {
@@ -99,9 +101,32 @@ public class Student {
     )
     private Long age;
 
-    @OneToOne(mappedBy = "student", fetch = FetchType.EAGER)
-    @JsonIgnore
+    @OneToOne(mappedBy = "student")
     private IdCard idCard;
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public void addBook(Book book) {
+        if(!this.books.contains(book)) {
+            this.books.add(book);
+        }
+    }
+
+    public void removeBook(Book book) {
+        if(this.books.contains(book)) {
+            this.books.remove(book);
+        }
+    }
+
+    @OneToMany(mappedBy = "student",
+            orphanRemoval = true)
+    private List<Book> books = new ArrayList<>();
 
     public IdCard getIdCard() {
         return idCard;
