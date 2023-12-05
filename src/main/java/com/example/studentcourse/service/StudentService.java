@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -31,8 +32,15 @@ public class StudentService {
     }
 
     public Student getStudentAlongIdCardAndBooks(Long id) {
-        return studentRepository.getStudent(id);
+        Optional<Student> student = studentRepository.findById(id);
+
+//        return studentRepository.getStudent(id);
+        return student.get();
     }
+
+//    public void removeBookOfStudent(Long bookId, Long studentId) {
+//        studentRepository.
+//    }
 
     public Student save(Student student) {
         return studentRepository.save(student);

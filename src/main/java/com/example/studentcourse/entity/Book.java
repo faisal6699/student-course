@@ -57,12 +57,11 @@ public class Book {
         this.student = student;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(
             name = "studentId",
             referencedColumnName = "id",
             foreignKey = @ForeignKey(name = "studdent_id_fk")
     )
-    @JsonIgnore
     private Student student;
 }

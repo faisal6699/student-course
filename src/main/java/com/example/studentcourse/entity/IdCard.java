@@ -22,14 +22,13 @@ public class IdCard {
         this.student = student;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(
             name = "studentId",
             referencedColumnName = "id",
             nullable = false,
             foreignKey = @ForeignKey(name = "id_fk")
     )
-    @JsonIgnore
     private Student student;
 
     public Long getId() {

@@ -1,9 +1,10 @@
 package com.example.studentcourse.entity;
 
+import com.example.studentcourse.model.IdCardModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,38 +102,81 @@ public class Student {
     )
     private Long age;
 
-    @OneToOne(mappedBy = "student")
-    private IdCard idCard;
+//    public List<Book> getBooks() {
+//        return books;
+//    }
+//
+//    public void setBooks(List<Book> books) {
+//        this.books = books;
+//    }
+//
+//    public void addBook(Book book) {
+//        if(!this.books.contains(book)) {
+//            this.books.add(book);
+//        }
+//    }
+//
+//    public void removeBook(Book book) {
+//        if(this.books.contains(book)) {
+//            this.books.remove(book);
+//        }
+//    }
+//
+//
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(
+//            name = "book_id",
+//            referencedColumnName = "id",
+//            foreignKey = @ForeignKey(
+//                    name = "book_id_fk"
+//            )
+//    )
+//    private List<Book> books = new ArrayList<>();
 
-    public List<Book> getBooks() {
-        return books;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(
+//            name = "id_card_id",
+//            referencedColumnName = "id",
+//            foreignKey = @ForeignKey(
+//                    name = "id_card_fk"
+//            )
+//    )
+//    private IdCard idCard;
+//
+//    public IdCard getIdCard() {
+//        return idCard;
+//    }
+//
+//    public void setIdCard(IdCard idCard) {
+//        this.idCard = idCard;
+//    }
+
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(
+            name = "enrollment_id",
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "enrollment_id_fk"
+            )
+    )
+    @JsonIgnore
+    private List<Enrollment> enrollments = new ArrayList<>();
+
+    public List<Enrollment> getEnrollments() {
+        return enrollments;
     }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    public void setEnrollments(List<Enrollment> enrollments) {
+        this.enrollments = enrollments;
     }
 
-    public void addBook(Book book) {
-        if(!this.books.contains(book)) {
-            this.books.add(book);
+    public void addEnrollment(Enrollment enrollment) {
+        if(!enrollments.contains(enrollment)) {
+            this.enrollments.add(enrollment);
         }
     }
 
-    public void removeBook(Book book) {
-        if(this.books.contains(book)) {
-            this.books.remove(book);
-        }
-    }
-
-    @OneToMany(mappedBy = "student",
-            orphanRemoval = true)
-    private List<Book> books = new ArrayList<>();
-
-    public IdCard getIdCard() {
-        return idCard;
-    }
-
-    public void setIdCard(IdCard idCard) {
-        this.idCard = idCard;
+    public void removeEnrollment(Enrollment enrollment) {
+            this.enrollments.remove(enrollment);
     }
 }
